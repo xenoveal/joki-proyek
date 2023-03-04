@@ -173,4 +173,25 @@ class ProjectController extends Controller
             ]);
         }
     }
+
+    public function listProject(){
+        $project = Project::all();
+        return view('project',["projects"=> $project]);
+    }
+
+    public function update(Request $request, $id_kategori)
+    {
+        $category = Category::find($id_kategori);
+        $category->update($request->all());
+        return redirect('category');
+    }
+
+    public function changeStatus(Request $request)
+    {
+        $project = Project::find($request->project_id);
+        $project->update([
+            'status'        => $request->input('status'),
+        ]);
+        return response()->json(['status' => 'Status berhasil diubah.']);
+    }
 }
