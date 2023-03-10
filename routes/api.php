@@ -17,8 +17,8 @@ use App\Http\Controllers\ProjectController;
 
 // PROJECT
 Route::prefix('project')->group(function () {
+    Route::get('/user-projects/{contact}', [ProjectController::class, 'getUserProjects']);
+    Route::get('/user-projects', [ProjectController::class, 'getAllUserProjects']);
     Route::post('/add-project', [ProjectController::class, 'addProject']);
     Route::post('/pay-project', [ProjectController::class, 'payProject']);
 });
-
-
