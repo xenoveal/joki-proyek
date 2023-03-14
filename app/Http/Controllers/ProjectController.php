@@ -133,7 +133,7 @@ class ProjectController extends Controller
 
     public function getUserProjects(Request $request, $contact)
     {
-        $user = User::where('email', $contact)->orWhere('email', $contact)->get();
+        $user = User::where('email', $contact)->orWhere('phone_number', $contact)->get();
 
         if ($user->count()) {
             $project = Project::select('project_id', 'project_type', 'project_details', 'deadline', 'status', 'created_at')->where('user_id', $user[0]->user_id)->get();
